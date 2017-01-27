@@ -1,0 +1,484 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"get",
+				"getalbums"
+			],
+			[
+				"bor",
+				"border"
+			],
+			[
+				"te",
+				"text-align"
+			],
+			[
+				"ba",
+				"background"
+			],
+			[
+				"mar",
+				"margin-top"
+			],
+			[
+				"Fa",
+				"albumService"
+			],
+			[
+				"in",
+				"input	Tag"
+			],
+			[
+				"Favo",
+				"album"
+			],
+			[
+				"margi",
+				"margin-right"
+			],
+			[
+				"marg",
+				"margin-top"
+			],
+			[
+				"_ro",
+				"_router"
+			],
+			[
+				"pa",
+				"padding"
+			],
+			[
+				"margin",
+				"margin-top"
+			],
+			[
+				"padd",
+				"padding"
+			],
+			[
+				"text",
+				"text-decoration"
+			],
+			[
+				"border-co",
+				"border-color"
+			],
+			[
+				"err",
+				"errorMessage"
+			],
+			[
+				"album",
+				"albumService"
+			],
+			[
+				"bore",
+				"border-bottom"
+			],
+			[
+				"paddi",
+				"padding-left"
+			],
+			[
+				"font-",
+				"font-family"
+			],
+			[
+				"favori",
+				"albumsVisibles"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"fa",
+				"albumsVisibles"
+			],
+			[
+				"s",
+				"String"
+			],
+			[
+				"fav",
+				"album"
+			],
+			[
+				"album",
+				"albumStored"
+			],
+			[
+				"lo",
+				"log"
+			],
+			[
+				"re",
+				"result"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/C/Proyectos/Proyecto_Node_Angular/client-albums/app/components/album-edit.component.ts",
+			"settings":
+			{
+				"buffer_size": 2095,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Proyectos/Proyecto_Node_Angular/client-albums/app/app.routing.ts",
+			"settings":
+			{
+				"buffer_size": 867,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Proyectos/Proyecto_Node_Angular/client-albums/app/app.module.ts",
+			"settings":
+			{
+				"buffer_size": 953,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Proyectos/Proyecto_Node_Angular/client-albums/app/views/list-albums.html",
+			"settings":
+			{
+				"buffer_size": 1131,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "// Importar Component desde el núcleo de Angular\nimport {Component, OnInit} from '@angular/core';\nimport {albumService} from '../services/service.album';\nimport {album} from '../models/album';\n \n// Decorador component, indicamos en que etiqueta se va a cargar la plantilla\n@Component({\n    selector: 'list-albums',\n    //template: '<h1>Hola mundo con Angular 2 !! victorroblesweb.es</h1>'\n    templateUrl: 'app/views/list-albums.html',\n    providers: [albumService]\n})\n \nexport class ListalbumsComponent implements OnInit { \n	public title: string;\n	public loading: boolean;\n\n	public errorMessage;\n	public albums:album[];\n\n	public confirmado;\n\n	constructor(\n		private _albumService: albumService\n		){\n		this.title = \"Listado de marcadores: \";\n		this.loading = true;\n	}\n\n	ngOnInit(){\n		console.log(\"ListalbumsComponent cargado!!\");\n		this.getalbums();\n	}\n\n	getalbums(){\n		this._albumService.getalbums().subscribe(\n			result => {\n				console.log(result);\n				this.albums=result.albums;\n				if(!this.albums){\n					alert(\"Error en el servidor\");\n				}else{\n					this.loading=false;\n				}\n\n			},\n			error => {\n				this.errorMessage = <any> error;\n				if(this.errorMessage != null){\n					console.log(this.errorMessage);\n					alert(\"Error en la petición\")\n				}	\n			}	\n\n\n\n\n			);\n	}\n\n\n	onBorrarConfirm(id){\n		this.confirmado=id;\n	}\n\n	onCancelarConfirm(id){\n		this.confirmado=null;\n	}\n	onBorraralbum(id){\n		this._albumService.deletealbum(id).subscribe(\n			result =>{\n				if(!result.message){\n					alert(\"Error en la petición\");\n				}\n				else{\n					this.getalbums();\n				}\n\n			},\n			error=>{\n				this.errorMessage = <any> error;\n				if(this.errorMessage != null){\n					console.log(this.errorMessage);\n					alert(\"Error en la petición\")\n				}\n\n			}\n\n\n			);\n	}\n\n}\n\n",
+			"file": "/C/Proyectos/Proyecto_Node_Angular/client-albums/app/components/list-albums.component.ts",
+			"file_size": 1923,
+			"file_write_time": 131264512670860189,
+			"settings":
+			{
+				"buffer_size": 1825,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 58.0,
+		"selected_items":
+		[
+			[
+				"typescript",
+				"Set Syntax: AppleScript"
+			]
+		],
+		"width": 400.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Proyectos/Proyecto_Node_Angular/client-albums/app/services/service.album.ts",
+		"/C/Proyectos/Proyecto_Node_Angular/client-albums/app/views/album-add.html",
+		"/C/Proyectos/Proyecto_Node_Angular/client-albums/assets/css/styles.css",
+		"/C/Proyectos/Proyecto_Node_Angular/api-restful-albums/app.js",
+		"/C/Proyectos/Proyecto_Node_Angular/client-albums/app/app.routing.js",
+		"/C/Proyectos/Proyecto_Node_Angular/client-albums/app/models/album.ts",
+		"/C/Proyectos/Proyecto_Node_Angular/client-albums/app/views/home.html",
+		"/C/Proyectos/Proyecto_Node_Angular/client-albums/app/app.module.ts",
+		"/C/Proyectos/Proyecto_Node_Angular/client-albums/app/app.routing.ts",
+		"/C/Proyectos/Proyecto_Node_Angular/client-albums/app/components/album-add.component.ts",
+		"/C/Proyectos/Proyecto_Node_Angular/api-restful-albums/controllers/album.js",
+		"/C/Proyectos/Proyecto_Node_Angular/client-albums/app/components/album-detail.component.ts",
+		"/C/Proyectos/Proyecto_Node_Angular/api-restful-albums/routes/album.js",
+		"/C/Proyectos/Proyecto_Node_Angular/api-restful-albums/index.js",
+		"/C/Proyectos/Proyecto_Node_Angular/client-albums/app/app.module.js",
+		"/C/Proyectos/Proyecto_Node_Angular/client-albums/app/views/album-detail.html",
+		"/C/Proyectos/Proyecto_Node_Angular/client-albums/app/components/list-albums.component.ts",
+		"/C/Proyectos/Proyecto_Node_Angular/client-albums/app/views/list-albums.html",
+		"/C/Users/Miguel/AppData/Local/Temp/Rar$DRa0.939/assets/images/loader.gif",
+		"/C/Proyectos/Proyecto_Node_Angular/client-albums/app/models/album.js",
+		"/C/Proyectos/Proyecto_Node_Angular/client-albums/app/app.component.ts",
+		"/C/Proyectos/Proyecto_Node_Angular/client-albums/npm-debug.log",
+		"/C/Proyectos/Proyecto_Node_Angular/client-albums/index.html",
+		"/C/Proyectos/Proyecto_Node_Angular/client-albums/components/list-albums.component.ts",
+		"/C/Proyectos/Proyecto_Node_Angular/client-albums/components/list-albums.component.js",
+		"/C/Proyectos/Proyecto_Node_Angular/client-albums/app/app.component.js",
+		"/C/Proyectos/Proyecto_Node_Angular/client-albums/app/views/cuerpo.html",
+		"/C/Proyectos/Proyecto_Node_Angular/angular2-final/index.html",
+		"/C/Proyectos/Proyecto_Node_Angular/angular2-final/app/app.component.ts",
+		"/C/Proyectos/Proyecto_Node_Angular/angular2-final/app/app.module.ts",
+		"/C/Proyectos/Proyecto_Node_Angular/angular2-final/app/main.ts",
+		"/C/Proyectos/Proyecto_Node_Angular/angular2-final/package.json",
+		"/C/Proyectos/Proyecto_Node_Angular/angular2-final/systemjs.config.js",
+		"/C/Proyectos/Proyecto_Node_Angular/angular2-final/typings.json",
+		"/C/Proyectos/Proyecto_Node_Angular/angular2-final/tsconfig.json",
+		"/C/Proyectos/Proyecto_Node_Angular/JSAngular2_final/npm-debug.log",
+		"/C/Proyectos/Proyecto_Node_Angular/JSAngular2_final/index.html",
+		"/C/Proyectos/Proyecto_Node_Angular/JSAngular2_final/app/main.ts",
+		"/C/Proyectos/Proyecto_Node_Angular/JSAngular2_final/app/app.module.ts",
+		"/C/Proyectos/Proyecto_Node_Angular/JSAngular2_final/package.json",
+		"/C/Proyectos/Proyecto_Node_Angular/JSAngular2_final/systemjs.config.js",
+		"/C/Proyectos/Proyecto_Node_Angular/JSAngular2_final/app/app.component.ts",
+		"/C/Proyectos/Proyecto_Node_Angular/api-restful-albums/curso_typescript/index.html",
+		"/C/Proyectos/Proyecto_Node_Angular/api-restful-albums/curso_typescript/pureba.ts",
+		"/C/Proyectos/Proyecto_Node_Angular/api-restful-albums/curso_typescript/pureba.js",
+		"/C/Proyectos/Proyecto_Node_Angular/JSAngular2_final/tsconfig.json",
+		"/C/Proyectos/Proyecto_Node_Angular/JSAngular2_final/typings.json",
+		"/C/Proyectos/Proyecto_Node_Angular/api-restful-albums/models/album.js",
+		"/C/Proyectos/Proyecto_Node_Angular/api-restful-albums/package.json",
+		"/C/Proyectos/Proyecto_Node_Angular/calculadora.js",
+		"/C/Proyectos/Server JS Angular/package.json",
+		"/C/Proyectos/Server JS Angular/server.js",
+		"/C/Proyectos/Server JS Angular/main.js",
+		"/C/Proyectos/Server JS Angular/index.html"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"throw"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/C/Proyectos/Proyecto_Node_Angular/client-albums/app/components/album-edit.component.ts",
+					"settings":
+					{
+						"buffer_size": 2095,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2081,
+								2081
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 630.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/C/Proyectos/Proyecto_Node_Angular/client-albums/app/app.routing.ts",
+					"settings":
+					{
+						"buffer_size": 867,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								867,
+								867
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/C/Proyectos/Proyecto_Node_Angular/client-albums/app/app.module.ts",
+					"settings":
+					{
+						"buffer_size": 953,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								843,
+								843
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/C/Proyectos/Proyecto_Node_Angular/client-albums/app/views/list-albums.html",
+					"settings":
+					{
+						"buffer_size": 1131,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								819,
+								819
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/C/Proyectos/Proyecto_Node_Angular/client-albums/app/components/list-albums.component.ts",
+					"settings":
+					{
+						"buffer_size": 1825,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								733,
+								736
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 360.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 261.0,
+	"status_bar_visible": true
+}
